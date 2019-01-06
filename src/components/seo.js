@@ -60,7 +60,20 @@ function SEO({ description, lang, meta, keywords, title }) {
                   : []
               )
               .concat(meta)}
-          />
+          >
+            <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" type="text/javascript" />
+            <script type="text/javascript">{`
+                if (window.netlifyIdentity) {
+                  window.netlifyIdentity.on("init", user => {
+                    if (!user) {
+                      window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                      });
+                    }
+                  });
+                }
+            `}</script>
+          </Helmet>
         )
       }}
     />
